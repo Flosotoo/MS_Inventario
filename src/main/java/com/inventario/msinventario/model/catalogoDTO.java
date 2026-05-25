@@ -3,7 +3,7 @@ package com.inventario.msinventario.model;
 import lombok.Data;
 
 @Data
-public class catalogoDTO {
+public class CatalogoDTO {
     private Long idProducto;
     private String nombre;
     private String descripcion;
