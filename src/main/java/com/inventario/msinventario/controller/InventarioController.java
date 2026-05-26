@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inventario.msinventario.model.Inventario;
+import com.inventario.msinventario.model.StockDTO;
 import com.inventario.msinventario.service.InventarioService;
 
 @RestController
@@ -55,6 +56,16 @@ public class InventarioController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(buscado, HttpStatus.OK);
+    }
+
+    @GetMapping("/stock/sucursal/{idSucursal}")
+    public ResponseEntity<List<StockDTO>> getStockPorSucursal(
+            @PathVariable Long idSucursal) {
+        List<StockDTO> resultado = inventarioService.verificarStockConCatalogo(idSucursal);
+        if (resultado.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(resultado, HttpStatus.OK);
     }
 
     //Actualizar cantidades de stock
